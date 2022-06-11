@@ -1,25 +1,43 @@
-<div class="card-container">
-  <div>
-    <div>
+<form [formGroup]="loginForm" (ngSubmit)="logIn()" class="container" style="width: 35vw">
+  <h1>Log In</h1>
+    <div class="row">
+    <div class="col-4">
       <label for="username">User name</label>
     </div>
-    <div>
-      <input type="text" name="username">
+    <div class="col-8">
+      <input type="text" name="username" formControlName="username" required>
+      <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert">
+        <span *ngIf="username.errors?.['required']" id="usernameRequired">User name is required</span>
+      </div>
     </div>
   </div>
-  <div>
-    <div>
+  <div class="row">
+    <div class="col-4">
       <label for="password">Password</label>
     </div>
-    <div>
-      <input type="password" name="password">
+    <div class="col-8">
+      <input type="password" name="password" formControlName="password" required>
+      <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert">
+        <span *ngIf="password.errors?.['required']">Password is required</span>
+      </div>
     </div>
   </div>
-  <div>
-    <a class="card" target="_blank" rel="noopener" href="http://localhost:4200">
-      <svg xmlns="http://www.w3.org/2000/svg" style="margin-right: 8px" width="21.813" height="23.453" viewBox="0 0 21.813 23.453"><path d="M4099.584,972.736h0l-10.882,3.9,1.637,14.4,9.245,5.153,9.245-5.153,1.686-14.4Z" transform="translate(-4088.702 -972.736)" fill="#808080"/><path d="M4181.516,972.736v23.453l9.245-5.153,1.686-14.4Z" transform="translate(-4170.633 -972.736)" fill="#808080"/><path d="M4137.529,1076.127l-7.7-3.723,4.417-2.721,7.753,3.723Z" transform="translate(-4125.003 -1058.315)" fill="#ffe0b2"/><path d="M4137.529,1051.705l-7.7-3.723,4.417-2.721,7.753,3.723Z" transform="translate(-4125.003 -1036.757)" fill="#fff3e0"/><path d="M4137.529,1027.283l-7.7-3.723,4.417-2.721,7.753,3.723Z" transform="translate(-4125.003 -1015.199)" fill="#fff"/></svg>
+  <div class="row commands">
+    <span *ngIf="unrecognisedUser" class="alert" id="unrecognisedUserError">User name not recognised</span>
+    <span *ngIf="invalidPassword" class="alert" id="invalidPasswordError">Password is invalid</span>
+    <span *ngIf="unrecognisedUser || invalidPassword" class="alert" id="unsuccessfulLoginError">Consider resetting your password</span>
+    <span *ngIf="accountLocked" id="accountLockedError">Your account has been locked.  Please contact the helpdesk</span>
+    <button class="card" target="_blank" rel="noopener" type="button">
+      <fa-icon [icon]="faSignUp"></fa-icon>
+      <span>Sign Up</span>
+    </button>
+    <button class="card" target="_blank" rel="noopener" type="button">
+      <fa-icon [icon]="faReset"></fa-icon>
+      <span>Reset Password</span>
+    </button>
+    <button class="card" target="_blank" rel="noopener" type="submit" [disabled]="loginForm.invalid">
+      <fa-icon [icon]="faSignIn"></fa-icon>
       <span>Log In</span>
-      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
-    </a>
+    </button>
   </div>
-</div>
+</form>
