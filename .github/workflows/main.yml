@@ -4,5 +4,8 @@ jobs:
   Test-with-coverage:
     runs-on: ubuntu-latest
     steps:
-      - name: JEST Report
-        uses: RedaktionsNetzwerk-Deutschland/action-jest-reporter@v1.0.0
+      - run: jest --json --outputFile=result.json --testLocationInResults
+      - uses: tanmen/jest-reporter@v1
+        if: always()
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
