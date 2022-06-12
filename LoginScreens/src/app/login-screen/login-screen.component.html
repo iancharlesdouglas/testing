@@ -5,7 +5,7 @@
       <label for="username">User name</label>
     </div>
     <div class="col-8">
-      <input type="text" name="username" formControlName="username" required>
+      <input type="text" name="username" formControlName="username" required placeholder="Enter your user name">
       <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert">
         <span *ngIf="username.errors?.['required']" id="usernameRequired">User name is required</span>
       </div>
@@ -16,7 +16,7 @@
       <label for="password">Password</label>
     </div>
     <div class="col-8">
-      <input type="password" name="password" formControlName="password" required>
+      <input type="password" name="password" formControlName="password" required placeholder="Enter your password">
       <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert">
         <span *ngIf="password.errors?.['required']">Password is required</span>
       </div>
@@ -27,15 +27,15 @@
     <span *ngIf="invalidPassword" class="alert" id="invalidPasswordError">Password is invalid</span>
     <span *ngIf="unrecognisedUser || invalidPassword" class="alert" id="unsuccessfulLoginError">Consider resetting your password</span>
     <span *ngIf="accountLocked" id="accountLockedError">Your account has been locked.  Please contact the helpdesk</span>
-    <button class="card" target="_blank" rel="noopener" type="button">
+    <button class="card" target="_blank" rel="noopener" type="button" (click)="signUp()">
       <fa-icon [icon]="faSignUp"></fa-icon>
       <span>Sign Up</span>
     </button>
-    <button class="card" target="_blank" rel="noopener" type="button">
+    <button class="card" target="_blank" rel="noopener" type="button" (click)="resetPassword()">
       <fa-icon [icon]="faReset"></fa-icon>
       <span>Reset Password</span>
     </button>
-    <button class="card" target="_blank" rel="noopener" type="submit" [disabled]="loginForm.invalid">
+    <button class="card" target="_blank" rel="noopener" type="submit" [disabled]="loginForm.invalid || accountLocked">
       <fa-icon [icon]="faSignIn"></fa-icon>
       <span>Log In</span>
     </button>

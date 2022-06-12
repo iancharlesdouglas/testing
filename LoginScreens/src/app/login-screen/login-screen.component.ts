@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {
-  faBroom,
   faFileSignature,
+  faPumpMedical,
   faSign,
   faSignInAlt,
 } from '@fortawesome/free-solid-svg-icons';
-import { LoginService } from './service/login.service';
+import { LoginService } from '../service/login.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -19,7 +19,7 @@ export class LoginScreenComponent implements OnInit {
   icon = faSign;
   faSignIn = faSignInAlt;
   faSignUp = faFileSignature;
-  faReset = faBroom;
+  faReset = faPumpMedical;
   unrecognisedUser = false;
   invalidPassword = false;
   accountLocked = false;
@@ -32,7 +32,9 @@ export class LoginScreenComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.reset();
+  }
 
   get username() {
     return this.loginForm?.get('username') || new FormControl('');
@@ -44,15 +46,6 @@ export class LoginScreenComponent implements OnInit {
 
   async logIn(): Promise<void> {
     if (this.loginForm.valid) {
-      console.log(
-        'login - username',
-        this.loginForm.get('username')?.value?.trim()
-      );
-      console.log(
-        'login - password',
-        this.loginForm.get('password')?.value?.trim()
-      );
-
       this.attempts += 1;
       const validationResult = await this.loginService.validate(
         this.loginForm.get('username')?.value?.trim(),
@@ -61,10 +54,23 @@ export class LoginScreenComponent implements OnInit {
       this.unrecognisedUser = !validationResult.userRecognised;
       this.invalidPassword = !validationResult.passwordValid;
       if (validationResult.userRecognised && validationResult.passwordValid) {
+        this.reset();
         this.router.navigate(['/']);
       } else if (this.attempts === 3) {
         this.accountLocked = true;
       }
     }
+  }
+
+  async resetPassword(): Promise<void> {
+    this.router.navigate(['/resetPassword']);
+  }
+
+  async signUp(): Promise<void> {
+    this.router.navigate(['/signUp']);
+  }
+
+  private reset() {
+    this.attempts = 0;
   }
 }

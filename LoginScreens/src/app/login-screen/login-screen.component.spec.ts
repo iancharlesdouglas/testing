@@ -4,10 +4,10 @@ import { LoginScreenComponent } from './login-screen.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BrowserModule } from '@angular/platform-browser';
-import { LoginService } from './service/login.service';
+import { LoginService } from '../service/login.service';
 import { Router } from '@angular/router';
 
-describe('LoginScreenComponent', () => {
+describe('Login Screen', () => {
   let component: LoginScreenComponent;
   let fixture: ComponentFixture<LoginScreenComponent>;
   const loginService = {
@@ -68,7 +68,10 @@ describe('LoginScreenComponent', () => {
     expect(component.unrecognisedUser).toBeFalsy();
 
     // Unrecognised user may not log in
-    component.loginForm.setValue({ username: unrecognisedUser, password: 'x' });
+    component.loginForm.setValue({
+      username: unrecognisedUser,
+      password: 'x',
+    });
 
     await component.logIn();
     fixture.detectChanges();
@@ -96,7 +99,10 @@ describe('LoginScreenComponent', () => {
     expect(component.unrecognisedUser).toBeFalsy();
 
     // Invalid password - may not log in
-    component.loginForm.setValue({ username: 'x', password: invalidPassword });
+    component.loginForm.setValue({
+      username: 'x',
+      password: invalidPassword,
+    });
 
     await component.logIn();
     fixture.detectChanges();
@@ -108,7 +114,7 @@ describe('LoginScreenComponent', () => {
     expect(error).toBeTruthy();
   });
 
-  test('On successful login the user is taken to the home screen', async () => {
+  test('On successful login, user is taken to home screen', async () => {
     const validUsername = 'john.t.doe@doemail.com';
     const correctPassword = 'sj2fdw2"£ssii2uJJ7';
     loginService.validate.mockImplementation((username, password) => ({
@@ -126,7 +132,7 @@ describe('LoginScreenComponent', () => {
     expect(router.navigate).toHaveBeenCalledWith(['/']);
   });
 
-  test('On unsuccessful login a password reset is suggested', async () => {
+  test('On unsuccessful login, password reset is suggested', async () => {
     const validUsername = 'john.t.doe@doemail.com';
     const correctPassword = 'sj2fdw2"£ssii2uJJ7';
     const incorrectPassword = 'Password1';
@@ -149,7 +155,7 @@ describe('LoginScreenComponent', () => {
     expect(error).toBeTruthy();
   });
 
-  test('Three unsuccessful logins - account locked and suggestion shown: contact help desk', async () => {
+  test('On three unsuccessful logins, account locked and suggestion shown: contact help desk', async () => {
     const validUsername = 'john.t.doe@doemail.com';
     const correctPassword = 'sj2fdw2"£ssii2uJJ7';
     const incorrectPassword = 'Password1';
@@ -172,5 +178,17 @@ describe('LoginScreenComponent', () => {
       '#accountLockedError'
     );
     expect(error).toBeTruthy();
+  });
+
+  test('On selecting Reset Password the user is take to the Reset Password screen', async () => {
+    await component.resetPassword();
+
+    expect(router.navigate).toHaveBeenCalledWith(['/resetPassword']);
+  });
+
+  test('On selecting Sign Up the user is taken to the Sign Up screen', async () => {
+    await component.signUp();
+
+    expect(router.navigate).toHaveBeenCalledWith(['/signUp']);
   });
 });

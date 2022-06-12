@@ -5,9 +5,16 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginScreenComponent } from './login-screen/login-screen.component';
+import { ResetPasswordScreenComponent } from './reset-password-screen/reset-password-screen.component';
+import { SignUpScreenComponent } from './sign-up-screen/sign-up-screen.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginScreenComponent],
+  declarations: [
+    AppComponent,
+    LoginScreenComponent,
+    ResetPasswordScreenComponent,
+    SignUpScreenComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
