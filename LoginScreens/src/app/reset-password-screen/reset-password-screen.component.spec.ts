@@ -120,7 +120,7 @@ describe('Reset Password Screen', () => {
     expect(router.navigate).toHaveBeenCalledWith(['/login']);
   });
 
-  test('On selecting Login Screen the user is taken to the Login screen', async () =>; {
+  test('On selecting Login Screen the user is taken to the Login screen', async () => {
     throw new Error('Not implemented');
   });
 });

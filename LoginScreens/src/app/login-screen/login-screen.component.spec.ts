@@ -53,7 +53,7 @@ describe('Login Screen', () => {
     expect(component.loginForm.valid).toBeTruthy();
   });
 
-  test('Invalid user - cannot log in', async () => {
+  test('Invalid user name - cannot log in', async () => {
     const recognisedUser = 'John T. Recognised';
     const unrecognisedUser = 'John Doe';
     loginService.validate.mockImplementation((username) => ({
@@ -155,7 +155,7 @@ describe('Login Screen', () => {
     expect(error).toBeTruthy();
   });
 
-  test('On three unsuccessful logins, account locked and suggestion shown: contact help desk', async () => {
+  test('On three unsuccessful logins, account is locked and suggestion is shown: contact help desk', async () => {
     const validUsername = 'john.t.doe@doemail.com';
     const correctPassword = 'sj2fdw2"£ssii2uJJ7';
     const incorrectPassword = 'Password1';
@@ -180,7 +180,13 @@ describe('Login Screen', () => {
     expect(error).toBeTruthy();
   });
 
-  test('On selecting Reset Password the user is take to the Reset Password screen', async () => {
+  test('On selecting Request Password the user is taken to the Request New Password screen', async () => {
+    await component.requestNewPassword();
+
+    expect(router.navigate).toHaveBeenCalledWith(['/requestNewPassword']);
+  });
+
+  test('On selecting a Reset Password link the user is take to the Reset Password screen', async () => {
     await component.resetPassword();
 
     expect(router.navigate).toHaveBeenCalledWith(['/resetPassword']);

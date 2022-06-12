@@ -62,6 +62,10 @@ export class LoginScreenComponent implements OnInit {
     }
   }
 
+  async requestNewPassword(): Promise<void> {
+    this.router.navigate(['/requestNewPassword']);
+  }
+
   async resetPassword(): Promise<void> {
     this.router.navigate(['/resetPassword']);
   }

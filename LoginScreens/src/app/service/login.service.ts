@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { LoginValidationResult } from './login-validation-result';
 import { PasswordResetValidationResult } from './password-reset-validation-result';
+import { RequestNewPasswordResult } from './request-new-password-result';
 import { SignUpResult } from './sign-up-result';
 
 @Injectable({ providedIn: 'root' })
@@ -22,5 +23,11 @@ export class LoginService {
 
   signUp(username: string, password: string): Observable<SignUpResult> {
     return of({ successful: false, nameAlreadyTaken: false });
+  }
+
+  async requestNewPassword(
+    username: string
+  ): Promise<RequestNewPasswordResult> {
+    return { successful: false, userRecognised: false };
   }
 }

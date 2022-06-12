@@ -31,9 +31,9 @@
       <fa-icon [icon]="faSignUp"></fa-icon>
       <span>Sign Up</span>
     </button>
-    <button class="card" target="_blank" rel="noopener" type="button" (click)="resetPassword()">
+    <button class="card" target="_blank" rel="noopener" type="button" (click)="requestNewPassword()">
       <fa-icon [icon]="faReset"></fa-icon>
-      <span>Reset Password</span>
+      <span>Request Password</span>
     </button>
     <button class="card" target="_blank" rel="noopener" type="submit" [disabled]="loginForm.invalid || accountLocked">
       <fa-icon [icon]="faSignIn"></fa-icon>

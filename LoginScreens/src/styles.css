@@ -103,7 +103,8 @@ svg.material-icons:not(:last-child) {
   border: 1px solid rgb(165, 165, 165);
   background-color: rgb(49, 49, 49);
   height: 40px;
-  width: 150px;
+  width: 160px;
+  min-width: 160px;
   margin: 0 8px 16px;
   padding: 2px;
   display: inline-flex;
