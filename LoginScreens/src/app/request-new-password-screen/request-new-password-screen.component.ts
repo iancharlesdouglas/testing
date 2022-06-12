@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from '../service/login.service';
-import { faIdBadge } from '@fortawesome/free-solid-svg-icons';
+import { faIdBadge, faSignIn } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-request-new-password-screen',
@@ -13,6 +13,7 @@ export class RequestNewPasswordScreenComponent {
   requestForm: FormGroup;
   unrecognisedUser = false;
   idBadge = faIdBadge;
+  faSignIn = faSignIn;
 
   constructor(private loginService: LoginService, private router: Router) {
     this.requestForm = new FormGroup({
@@ -28,5 +29,9 @@ export class RequestNewPasswordScreenComponent {
     const username = this.requestForm.get('username')?.value?.trim();
     const result = await this.loginService.requestNewPassword(username);
     this.unrecognisedUser = !result.userRecognised;
+  }
+
+  async logInScreen(): Promise<void> {
+    this.router.navigate(['/login']);
   }
 }
