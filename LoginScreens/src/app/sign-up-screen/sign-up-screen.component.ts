@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { passwordFieldsMatchValidator } from '../validators/password-fields-match-validator';
 import { passwordComplexityValidator } from '../validators/password-complexity-validator';
@@ -15,7 +15,7 @@ import {
   templateUrl: './sign-up-screen.component.html',
   styleUrls: ['./sign-up-screen.component.css'],
 })
-export class SignUpScreenComponent implements OnInit {
+export class SignUpScreenComponent {
   signUpForm: FormGroup;
   nameAlreadyTaken = false;
   suggestedNames?: string[];
@@ -49,8 +49,6 @@ export class SignUpScreenComponent implements OnInit {
       }
     );
   }
-
-  ngOnInit(): void {}
 
   get username() {
     return this.signUpForm?.get('username') || new FormControl('');

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { passwordFieldsMatchValidator } from '../validators/password-fields-match-validator';
 import { passwordComplexityValidator } from '../validators/password-complexity-validator';
@@ -15,7 +15,7 @@ import {
   templateUrl: './reset-password-screen.component.html',
   styleUrls: ['./reset-password-screen.component.css'],
 })
-export class ResetPasswordScreenComponent implements OnInit {
+export class ResetPasswordScreenComponent {
   passwordForm: FormGroup;
   faSignIn = faSignInAlt;
   faSignUp = faFileSignature;
@@ -42,8 +42,6 @@ export class ResetPasswordScreenComponent implements OnInit {
       }
     );
   }
-
-  ngOnInit(): void {}
 
   get password() {
     return this.passwordForm?.get('password') || new FormControl('');
