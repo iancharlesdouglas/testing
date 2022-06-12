@@ -48,7 +48,7 @@ describe('Reset Password Screen', () => {
     expect(component.passwordForm.valid).toBeFalsy();
   });
 
-  test('Password must contain 8 letters with 1 digit, 2 lowercase, 1 uppercase and 1 symbol - at least 8 letters long', async () => {
+  test('Password must contain 8 letters with 1 digit, 2 lowercase, 1 uppercase and 1 symbol', async () => {
     const shortComplexPassword = '1qQ@a123';
     const tooShortComplexPassword = '1qQ@a12';
     const tooSimplePassword = '1qQ@Q123';
@@ -106,7 +106,7 @@ describe('Reset Password Screen', () => {
 
   test('After resetting their password, the user is taken to the Login screen', async () => {
     const complexPassword16 = '1qQ@a1235uG*321s';
-    loginService.resetPassword.mockImplementation((password, confirmed) => ({
+    loginService.resetPassword.mockImplementation((_password, _confirmed) => ({
       successful: true,
     }));
 

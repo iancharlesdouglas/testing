@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { passwordFieldsMatchValidator } from './password-fields-match-validator';
-import { passwordComplexityValidator } from './password-complexity-validator';
+import { passwordFieldsMatchValidator } from '../validators/password-fields-match-validator';
+import { passwordComplexityValidator } from '../validators/password-complexity-validator';
 import { LoginService } from '../service/login.service';
 import { Router } from '@angular/router';
 import {
@@ -27,11 +27,13 @@ export class ResetPasswordScreenComponent implements OnInit {
         password: new FormControl('', [
           Validators.required,
           passwordComplexityValidator,
+          Validators.minLength(8),
           Validators.maxLength(40),
         ]),
         confirmedPassword: new FormControl('', [
           Validators.required,
           passwordComplexityValidator,
+          Validators.minLength(8),
           Validators.maxLength(40),
         ]),
       },

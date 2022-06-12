@@ -53,7 +53,7 @@ describe('Login Screen', () => {
     expect(component.loginForm.valid).toBeTruthy();
   });
 
-  test('Unrecognised user - cannot log in', async () => {
+  test('Invalid user - cannot log in', async () => {
     const recognisedUser = 'John T. Recognised';
     const unrecognisedUser = 'John Doe';
     loginService.validate.mockImplementation((username) => ({
@@ -86,7 +86,7 @@ describe('Login Screen', () => {
   test('Invalid password - cannot log in', async () => {
     const validPassword = 'eiijf£4erfSU88*';
     const invalidPassword = 'password123';
-    loginService.validate.mockImplementation((username, password) => ({
+    loginService.validate.mockImplementation((_username, password) => ({
       userRecognised: true,
       passwordValid: password === validPassword,
     }));
