@@ -1,0 +1,17 @@
+<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><element><id>UMLActor</id><coordinates><x>100</x><y>160</y><w>60</w><h>110</h></coordinates><panel_attributes>User</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLUseCase</id><coordinates><x>230</x><y>60</y><w>130</w><h>60</h></coordinates><panel_attributes>Log in</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>150</x><y>90</y><w>100</w><h>120</h></coordinates><panel_attributes></panel_attributes><additional_attributes>10;100;80;10</additional_attributes></element><element><id>UMLUseCase</id><coordinates><x>230</x><y>130</y><w>130</w><h>60</h></coordinates><panel_attributes>Request password
+reset</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLUseCase</id><coordinates><x>230</x><y>200</y><w>130</w><h>60</h></coordinates><panel_attributes>Reset password</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLUseCase</id><coordinates><x>230</x><y>270</y><w>130</w><h>60</h></coordinates><panel_attributes>Sign up</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>150</x><y>180</y><w>100</w><h>80</h></coordinates><panel_attributes></panel_attributes><additional_attributes>10;10;80;60</additional_attributes></element><element><id>Relation</id><coordinates><x>150</x><y>150</y><w>100</w><h>60</h></coordinates><panel_attributes></panel_attributes><additional_attributes>10;40;80;10</additional_attributes></element><element><id>Relation</id><coordinates><x>150</x><y>180</y><w>100</w><h>140</h></coordinates><panel_attributes></panel_attributes><additional_attributes>10;10;80;120</additional_attributes></element><element><id>UMLClass</id><coordinates><x>190</x><y>430</y><w>220</w><h>260</h></coordinates><panel_attributes>_ChildWorkspaces: class_
+Package:common
+--
+-workspaceId: Identity
+--
++constructor(workspaceId)
+#take(id: string): ChildWorkspace
+#release(id: string)
+--
+Responsibilities
+*- Manages pool of child workspaces*
+- Take first available child to show
+- Release (closed) child to pool
+- Hide child?
+- Show child?
+- Bring child to front?</panel_attributes><additional_attributes></additional_attributes></element></diagram>
